@@ -1,12 +1,15 @@
 import React  from "react";
 import { signInUser } from "../../redux/ActionCreators/authActionCreators";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [success, setSuccess] = React.useState(false);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -14,8 +17,15 @@ const LoginForm = () => {
         alert("Please fill in all fields");
         return;
       }
-      dispatch (signInUser (email, password));
+      dispatch (signInUser (email, password, setSuccess));
     };
+
+    React.useEffect(()=>{
+      if(success){
+        navigate("/dashboard");
+      }
+    }, [success]);
+
      return (
         <form autoComplete="off" onSubmit={handleSubmit}>
             <div className="form-group my-2">

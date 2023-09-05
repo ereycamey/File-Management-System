@@ -3,32 +3,38 @@ import fire from "../../config/firebase";
 
 const loginUser = (payload) => {
     return {
-        type: types.LOGIN_USER,
+        type: types.SIGN_IN,
         payload,
     };
 };
 
 const logoutUser = () => {
     return {
-        type: types.SIGN_OUT_USER,
+        type: types.SIGN_OUT,
     };
 };
 
 //action creator
 
-export const signInUser = (email, password) => (dispatch) => {
+export const signInUser = (email, password, setSuccess) => (dispatch) => {
     fire
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then((user) => {
-        console.log(user);
+        dispatch(loginUser({
+            uid: user.user.uid, 
+            email: user.user.email,
+            displayName: user.user.displayName,
+        })
+        );
+        setSuccess(true);
     })
     .catch((error) => {
         alert("Invalid Email or password!");
     });
 };
 
-export const signUpUser = (name, email, password) => (dispatch) => {
+export const signUpUser = (name, email, password, setSuccess) => (dispatch) => {
     fire.auth().createUserWithEmailAndPassword(email, password).then((user) => {
         fire.auth().currentUser.updateProfile({
             displayName: name,
@@ -40,7 +46,8 @@ export const signUpUser = (name, email, password) => (dispatch) => {
                     name: currentUser.displayName,
                     email: currentUser.email,
                 })
-            )
+            );
+            setSuccess(true);
         }).catch((error) => {
             console.log(error);
         })
