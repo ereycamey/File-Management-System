@@ -17,7 +17,7 @@ const LoginForm = () => {
         alert("Please fill in all fields");
         return;
       }
-      dispatch (signInUser (email, password, setSuccess));
+      dispatch (signInUser(email, password, setSuccess));
     };
 
     React.useEffect(()=>{

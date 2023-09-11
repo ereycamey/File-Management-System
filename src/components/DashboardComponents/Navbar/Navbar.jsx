@@ -1,18 +1,18 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { SignOutUser } from "../../redux/ActionCreators/authActionCreators";
+import { SignOutUser } from "../../../redux/ActionCreators/authActionCreators";
 
 
-const NavigationComponent = () => {
+const Navbar = () => {
 
     const { isAuthenticated, user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark" >
-            <Link className="navbar-brand ms-5" to="/">
-                React Firebase File Management System
+        <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm" >
+            <Link className="navbar-brand ms-5" to="/dashboard">
+                File Management System
             </Link>
 
             <ul className="navbar-nav ms-auto me-5">
@@ -21,17 +21,17 @@ const NavigationComponent = () => {
                         <li className="nav-item mx-2">
 
                             <p className="my-0 mt-1 mx-2">
-                                <span className="text-light"> Welcome, </span>
-                                |<span className="text-warning">{user.displayName}</span>
+                                <span className="text-dark"> Welcome, </span>
+                                |<span className="fw-bold">{user.displayName}</span>
                             </p>
                         </li>
                         <li className="nav-item mx-2">
-                            <Link className="btn btn-primary btn-sm" to="/dashboard" >
-                                Dashboard
+                            <Link className="btn btn-primary" to="/" >
+                                Home
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <button className="btn btn-success btn-sm"
+                            <button className="btn btn-success"
                                 onClick={() => dispatch(SignOutUser)} >
                                 Logout
                             </button>
@@ -58,4 +58,4 @@ const NavigationComponent = () => {
     );
 };
 
-export default NavigationComponent;
+export default Navbar;

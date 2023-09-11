@@ -24,7 +24,7 @@ const RegisterForm = () => {
       alert("Passwords do not match");
       return;
     }
-
+ 
     dispatch (signUpUser(name, email, password, setSuccess));
   };
 
@@ -32,7 +32,7 @@ const RegisterForm = () => {
     if(success){
       navigate("/dashboard");
     }
-  }, [success])
+  },[success])
 
   return (
     <form autoComplete="off" onSubmit={handleSubmit}>
