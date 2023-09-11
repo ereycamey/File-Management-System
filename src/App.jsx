@@ -1,27 +1,32 @@
-import { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom'
-import './App.css'
-import { useDispatch } from 'react-redux';
-import { Login, Register, HomePage, DashboardPage } from './pages';
-import { checkIsLoggedIn } from './redux/ActionCreators/authActionCreators';
-const App = () => {
+import { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+import "./App.css";
+
+import { Login, Register, HomePage, DashboardPage } from "./pages";
+import { checkIsLoggedIn } from "./redux/ActionCreators/authActionCreators";
+
+const App = () => {
   const dispatch = useDispatch();
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(checkIsLoggedIn());
   }, []);
 
   return (
-      <div className='App'>
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/dashboard' element={<DashboardPage />} />
-        </Routes>
-      </div>
+    <div className="App">
+      <ToastContainer />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard/*" element={<DashboardPage />} />
+      </Routes>
+    </div>
   );
 };
 
-export default App
+export default App;

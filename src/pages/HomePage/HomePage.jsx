@@ -1,17 +1,15 @@
 import React from "react";
-import NavigationComponent from "../../components/HomePageComponents/Navigation";
-
+import { NavigationComponent } from "../../components/HomePageComponents";
 
 const HomePage = () => {
-
-
-    return (
-        <div >
-                <NavigationComponent />
-                <h1>Welcome!</h1>
-            </div>
-        
-    );
+  return (
+    <>
+      <NavigationComponent />
+      <h1 className="display-1 my-5 text-center">
+        Welcome To React Firebase File Management System
+      </h1>
+    </>
+  );
 };
 
 export default HomePage;
