@@ -1,20 +1,28 @@
 import React from "react";
+import { Row, Col, Typography } from "antd";
 import { Link } from "react-router-dom";
 
 import LoginForm from "../../../components/AuthComponents/LoginForm";
 
-const Login = () => {
+const { Title } = Typography;
+
+const LoginPage = () => {
   return (
-    <div className="container-fluid">
-      <h1 className="display-1 my-5 text-center">Login here</h1>
-      <div className="row">
-        <div className="col-md-5 mx-auto mt-5">
+      <Row justify="center" align="middle" >
+        <Col style={{ textAlign: "center" }}>
+          <Title >
+          
+          </Title>
+          <br />
+        </Col>
+        <Col>
           <LoginForm />
-          <Link to="/register">Not a member? Register</Link>
-        </div>
-      </div>
-    </div>
+       
+        </Col>
+      </Row>
+    
   );
 };
 
-export default Login;
+export default LoginPage;
+

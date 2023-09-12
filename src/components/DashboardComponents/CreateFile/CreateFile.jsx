@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
+import { Button, Input, Modal, notification } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
-import { toast } from "react-toastify";
-
 import { createFile } from "../../../redux/ActionCreators/fileFolderActionCreators";
+import { toast } from "react-toastify";
 
 const CreateFile = ({ setIsCreateFileModalOpen }) => {
   const [fileName, setFileName] = useState("");
@@ -84,51 +84,33 @@ const CreateFile = ({ setIsCreateFileModalOpen }) => {
   };
 
   return (
-    <div
-      className="col-md-12 position-fixed top-0 left-0 w-100 h-100"
-      style={{ background: "rgba(0, 0, 0, 0.4)", zIndex: 9999 }}
-    >
-      <div className="row align-items-cnter justify-content-center">
-        <div className="col-md-4 mt-5 bg-white rounded p-4">
-          <div className="d-flex justify-content-between">
-            <h4>Create File</h4>
-            <button
-              className="btn"
-              onClick={() => setIsCreateFileModalOpen(false)}
-            >
-              <FontAwesomeIcon
-                icon={faTimes}
-                className="text-black"
-                size="sm"
-              />
-            </button>
-          </div>
-          <hr />
-          <div className="d-flex flex-column align-items-center">
-            <form className=" mt-3 w-100" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <input
-                  type="text"
-                  className="form-control"
-                  id="fileName"
-                  placeholder="File name e,g. file.txt, index.html, index.php, index.ts, index.js"
-                  value={fileName}
-                  onChange={(e) => setFileName(e.target.value)}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="btn btn-primary mt-5 form-control"
-              >
-                Create File
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+    <Modal
+  title="Create File"
+  visible={true}
+  onCancel={() => setIsCreateFileModalOpen(false)}
+  footer={null}
+  style={{ maxWidth: "600px" }} // Adjust the maximum width as needed
+>
+  <form onSubmit={handleSubmit}>
+    <div className="form-group">
+      <Input
+        placeholder="File name e.g. file.txt, index.html, index.php, index.ts, index.js"
+        value={fileName}
+        onChange={(e) => setFileName(e.target.value)}
+      />
     </div>
-  );
+    <Button
+      type="primary"
+      htmlType="submit"
+      className="mt-3"
+      style={{ width: "100%" }} // Set the width of the button to 100%
+    >
+      Create File
+    </Button>
+  </form>
+</Modal>
+
+);
 };
 
 export default CreateFile;
