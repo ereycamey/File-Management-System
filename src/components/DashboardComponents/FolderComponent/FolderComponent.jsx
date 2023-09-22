@@ -1,5 +1,6 @@
 import { shallowEqual, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { Empty } from "antd";
 import ShowItems from "../ShowItems/ShowItems";
 
 const FolderComponent = () => {
@@ -30,29 +31,23 @@ const FolderComponent = () => {
       {childFolders.length > 0 || childFiles.length > 0 ? (
         <>
           {childFolders.length > 0 && (
-            <ShowItems
-              title={"Created Folders"}
-              type={"folder"}
-              items={childFolders}
-            />
+            <div>
+                <ShowItems title={"Created Folders"} type={"folder"} items={childFolders} />
+            </div>
           )}
           {createdFiles && createdFiles.length > 0 && (
-            <ShowItems
-              title={"Created Files"}
-              type={"file"}
-              items={createdFiles}
-            />
+            <div>
+                <ShowItems title={"Created Files"} type={"file"} items={createdFiles} />
+            </div>
           )}
           {uploadedFiles && uploadedFiles.length > 0 && (
-            <ShowItems
-              title={"Uploaded Files"}
-              type={"file"}
-              items={uploadedFiles}
-            />
+            <div>
+                <ShowItems title={"Uploaded Files"} type={"file"} items={uploadedFiles} />
+            </div>
           )}
         </>
       ) : (
-        <p className="text-center my-5">Empty Folder</p>
+        <Empty description={<span className="text-center my-5">Empty Folder</span>} />
       )}
     </div>
   );

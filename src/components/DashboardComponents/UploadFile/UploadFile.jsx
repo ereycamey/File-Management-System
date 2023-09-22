@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Modal, Button } from "antd"; // Import Ant Design components
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
@@ -8,6 +9,7 @@ import { toast } from "react-toastify";
 const UploadFile = ({ setIsFileUploadModalOpen }) => {
   const [file, setFile] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [visible, setVisible] = useState(true); // State for Ant Design modal visibility
 
   const { userFiles, user, currentFolder, currentFolderData } = useSelector(
     (state) => ({
@@ -41,6 +43,11 @@ const UploadFile = ({ setIsFileUploadModalOpen }) => {
     }
   };
 
+  const handleCancel = () => {
+    setVisible(false);
+    setIsFileUploadModalOpen(false);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (file) {
@@ -71,48 +78,34 @@ const UploadFile = ({ setIsFileUploadModalOpen }) => {
   };
 
   return (
-    <div
-      className="col-md-12 position-fixed top-0 left-0 w-100 h-100"
-      style={{ background: "rgba(0, 0, 0, 0.4)", zIndex: 9999 }}
+    <Modal
+      title="Upload File"
+      visible={visible}
+      onCancel={handleCancel}
+      footer={null} // Remove the default modal footer
+      destroyOnClose={true} // Unmount the modal on close
     >
-      <div className="row align-items-cnter justify-content-center">
-        <div className="col-md-4 mt-5 bg-white rounded p-4">
-          <div className="d-flex justify-content-between">
-            <h4>Upload File</h4>
-            <button
-              className="btn"
-              onClick={() => setIsFileUploadModalOpen(false)}
-            >
-              <FontAwesomeIcon
-                icon={faTimes}
-                className="text-black"
-                size="sm"
-              />
-            </button>
+      <div className="d-flex flex-column align-items-center">
+        <form className="mt-3 w-100" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <input
+              type="file"
+              className="form-control"
+              id="file"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
           </div>
-          <hr />
-          <div className="d-flex flex-column align-items-center">
-            <form className="mt-3 w-100" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <input
-                  type="file"
-                  className="form-control"
-                  id="file"
-                  onChange={(e) => setFile(e.target.files[0])}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="btn btn-primary mt-5 form-control"
-              >
-                Upload File
-              </button>
-            </form>
-          </div>
-        </div>
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="mt-3"
+            style={{ width: "100%" }}
+          >
+            Upload File
+          </Button>
+        </form>
       </div>
-    </div>
+    </Modal>
   );
 };
 

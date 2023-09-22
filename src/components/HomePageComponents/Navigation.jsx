@@ -3,16 +3,19 @@ import { Link } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 import { SignOutUser } from "../../redux/ActionCreators/authActionCreators";
-
+import pic from "../HomePageComponents/pic.png";
 const NavigationComponent = () => {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
-      <Link className="navbar-brand ms-5" to="/">
-        DICT-CAR File Management System
-      </Link>
+       <img
+          src={pic}
+          alt="Logo"
+          className="logo"
+          style={{ width: '120px', height: 'auto', marginLeft: 25 }} // Adjust the width and height as needed
+        />
 
       <ul className="navbar-nav ms-auto me-5">
         {isAuthenticated ? (

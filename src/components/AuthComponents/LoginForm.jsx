@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Form, Input, Button, Card, Col } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-
 import { signInUser } from "../../redux/ActionCreators/authActionCreators";
 import { Typography } from "antd";
 
@@ -33,13 +32,10 @@ const LoginForm = () => {
 
   return (
     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
-      <Card
-        style={{ width: 600, padding: 24, borderRadius: 8, boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)" }}
-      >
-         <Col style={{ textAlign: "center" }}>
-        <Title >
-            LOGIN 
-          </Title></Col>
+      <Card style={{ width: 400, padding: 24, borderRadius: 8, boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)" }}>
+        <Col style={{ textAlign: "center" }}>
+          <Title level={2}>LOGIN</Title>
+        </Col>
         <Form
           form={form}
           name="login-form"
@@ -58,7 +54,7 @@ const LoginForm = () => {
               },
             ]}
           >
-            <Input prefix={<UserOutlined />} placeholder="Email" />
+            <Input prefix={<UserOutlined />} placeholder="Email" size="large" />
           </Form.Item>
           <Form.Item
             name="password"
@@ -69,11 +65,11 @@ const LoginForm = () => {
               },
             ]}
           >
-            <Input.Password prefix={<LockOutlined />} type="password" placeholder="Password" />
+            <Input.Password prefix={<LockOutlined />} type="password" placeholder="Password" size="large" />
           </Form.Item>
           <Form.Item>
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <Button type="primary" htmlType="submit" style={{ width: "200px", height: "40px" }}>
+              <Button type="primary" htmlType="submit" style={{ width: "100%", height: "40px" }}>
                 Login
               </Button>
             </div>

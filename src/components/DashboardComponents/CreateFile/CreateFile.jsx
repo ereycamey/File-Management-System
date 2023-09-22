@@ -71,7 +71,14 @@ const CreateFile = ({ setIsCreateFileModalOpen }) => {
             data: "",
             url: null,
           };
-          dispatch(createFile(data, setSuccess));
+          dispatch(createFile(data, (success) => {
+            if (success) {
+              setSuccess(true);
+              toast.success // Corrected method name
+            } else {
+              toast.error("File creation failed"); // You can display an error toast if creation fails
+            }
+          }));
         } else {
           toast.info("File already present");
         }
@@ -83,34 +90,34 @@ const CreateFile = ({ setIsCreateFileModalOpen }) => {
     }
   };
 
+
   return (
     <Modal
-  title="Create File"
-  visible={true}
-  onCancel={() => setIsCreateFileModalOpen(false)}
-  footer={null}
-  style={{ maxWidth: "600px" }} // Adjust the maximum width as needed
->
-  <form onSubmit={handleSubmit}>
-    <div className="form-group">
-      <Input
-        placeholder="File name e.g. file.txt, index.html, index.php, index.ts, index.js"
-        value={fileName}
-        onChange={(e) => setFileName(e.target.value)}
-      />
-    </div>
-    <Button
-      type="primary"
-      htmlType="submit"
-      className="mt-3"
-      style={{ width: "100%" }} // Set the width of the button to 100%
+      title="Create File"
+      visible={true}
+      onCancel={() => setIsCreateFileModalOpen(false)}
+      footer={null}
+      style={{ maxWidth: "600px" }}
     >
-      Create File
-    </Button>
-  </form>
-</Modal>
-
-);
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <Input
+            placeholder="File name e.g. file.txt, index.html, index.php, index.ts, index.js"
+            value={fileName}
+            onChange={(e) => setFileName(e.target.value)}
+          />
+        </div>
+        <Button
+          type="primary"
+          htmlType="submit"
+          className="mt-3"
+          style={{ width: "100%" }}
+        >
+          Create File
+        </Button>
+      </form>
+    </Modal>
+  );
 };
 
 export default CreateFile;

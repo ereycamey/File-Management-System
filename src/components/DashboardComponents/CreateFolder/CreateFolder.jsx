@@ -6,7 +6,6 @@ import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { createFolder } from "../../../redux/ActionCreators/fileFolderActionCreators";
 import { toast } from "react-toastify";
 
-
 const CreateFolder = ({ setIsCreateFolderModalOpen }) => {
   const [folderName, setFolderName] = useState("");
 
@@ -27,11 +26,7 @@ const CreateFolder = ({ setIsCreateFolderModalOpen }) => {
     const folderPresent = userFolders
       .filter((folder) => folder.data.parent === currentFolder)
       .find((fldr) => fldr.data.name === name);
-    if (folderPresent) {
-      return true;
-    } else {
-      return false;
-    }
+    return folderPresent ? true : false;
   };
 
   const handleSubmit = (e) => {
@@ -53,6 +48,7 @@ const CreateFolder = ({ setIsCreateFolderModalOpen }) => {
             updatedAt: new Date(),
           };
           dispatch(createFolder(data));
+          toast.success // Display success toast
         } else {
           toast.info("Folder already present");
         }
@@ -66,27 +62,31 @@ const CreateFolder = ({ setIsCreateFolderModalOpen }) => {
 
   return (
     <Modal
-    title="Create Folder"
-    visible={true}
-    onCancel={() => setIsCreateFolderModalOpen(false)}
-    footer={null}
-    style={{ maxWidth: "600px" }}
-  >
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <Input
-          placeholder="Folder Name"
-          value={folderName}
-          onChange={(e) => setFolderName(e.target.value)}
-        />
-      </div>
-      <Button type="primary" htmlType="submit"
-     className="mt-3"
-     style={{ width: "100%" }} >
-        Create Folder
-      </Button>
-    </form>
-  </Modal>
-);
+      title="Create Folder"
+      visible={true}
+      onCancel={() => setIsCreateFolderModalOpen(false)}
+      footer={null}
+      style={{ maxWidth: "600px" }}
+    >
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <Input
+            placeholder="Folder Name"
+            value={folderName}
+            onChange={(e) => setFolderName(e.target.value)}
+          />
+        </div>
+        <Button
+          type="primary"
+          htmlType="submit"
+          className="mt-3"
+          style={{ width: "100%" }}
+        >
+          Create Folder
+        </Button>
+      </form>
+    </Modal>
+  );
 };
+
 export default CreateFolder;

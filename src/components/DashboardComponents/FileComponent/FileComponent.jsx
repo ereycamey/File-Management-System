@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, shallowEqual } from "react-redux";
-
+import { Button } from 'antd';
 import Header from "./Header";
 import CodeEditor from "./CodeEditor";
 import DocumentViewer from "../FileComponent/DocumentViewer";
-import ExcelViewer from "./ExcelViewer";
 
 const FileComponent = () => {
   const { fileId } = useParams();
@@ -38,7 +37,7 @@ const FileComponent = () => {
 
   const renderFilePreview = () => {
     const fileExtension = currentFile?.data?.extension.toLowerCase();
-  
+
     if (fileExtension.includes("png") || fileExtension.includes("jpg") || fileExtension.includes("jpeg") || fileExtension.includes("gif")) {
       // Display images as you were doing
       return (
@@ -74,9 +73,9 @@ const FileComponent = () => {
       );
     }
   };
-  
-  
-  
+
+
+
   if (isAuthenticated)
     return (
       <div>
@@ -95,29 +94,31 @@ const FileComponent = () => {
             />
           </>
         ) : (
-          <div className="position-fixed left-0 top-0 w-100 h-100 bg-black text-white">
-            <div className="d-flex py-4 mt-4 px-5 justify-content-between align-items-center">
+          <div className="position-fixed left-0 top-0 w-100 h-50 bg-black text-white">
+            <div className="d-flex py-1 mt-4 px-5 justify-content-between align-items-center">
               <p title={currentFile?.data?.name} className="my-0">
                 {currentFile?.data?.name.length > 40
                   ? currentFile?.data?.name.slice(0, 40) +
-                    "... ." +
-                    currentFile?.data?.extension
+                  "... ." +
+                  currentFile?.data?.extension
                   : currentFile?.data?.name}
               </p>
               <div className="d-flex align-items-center me-5">
-                <button
-                  className="btn btn-sm btn-outline-light me-2"
+                <Button
+                  type="default"
                   onClick={() => navigate(-1)}
+                  style={{ marginRight: '10px' }} // Add margin to the right
                 >
                   Go Back
-                </button>
-                <button
-                  className="btn btn-sm btn-primary"
+                </Button>
+                <Button
+                  type="primary"
                   onClick={() => downloadFile()}
                 >
                   Download
-                </button>
+                </Button>
               </div>
+
             </div>
             <div className="w-100 mt-4" style={{ height: "650px" }}>
               {renderFilePreview()}

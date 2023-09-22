@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { changeFolder } from "../../../redux/ActionCreators/fileFolderActionCreators";
 
 import "./ShowItems.css";
+import { Card } from "antd";
 
 const ShowItems = ({ title, items, type }) => {
   const navigate = useNavigate();
@@ -21,26 +22,30 @@ const ShowItems = ({ title, items, type }) => {
 
   return (
     <div className="w-100">
-      <h4 className="text-center border-bottom py-2">{title}</h4>
-      <div className="row gap-2 p-4 flex-wrap">
-        {items.map((item, index) => {
-          return (
-            <p
-              key={index * 55}
-              className="col-md-2 py-3 text-center d-flex flex-column border"
-              onDoubleClick={() => handleDblClick(item.docId)}
-            >
+    <h4 className="text-center border-bottom py-2">{title}</h4>
+    <div className="row gap-2 p-4 flex-wrap">
+      {items.map((item, index) => {
+        return (
+          <div key={index * 55} className="col-md-2">
+          <Card
+            className="py-3 text-center border"
+            onDoubleClick={() => handleDblClick(item.docId)}
+          >
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               {type === "folder" ? (
                 <FontAwesomeIcon icon={faFolder} size="4x" className="mb-3" />
               ) : (
                 <FontAwesomeIcon icon={faFileAlt} size="4x" className="mb-3" />
               )}
-              {item.data.name}
-            </p>
-          );
-        })}
-      </div>
+              <div>{item.data.name}</div>
+            </div>
+          </Card>
+        </div>
+        
+        );
+      })}
     </div>
+  </div>
   );
 };
 

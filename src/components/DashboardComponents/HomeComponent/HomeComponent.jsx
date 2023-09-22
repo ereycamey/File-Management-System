@@ -1,5 +1,6 @@
 import { shallowEqual, useSelector } from "react-redux";
 import ShowItems from "../ShowItems/ShowItems";
+import { Spin } from "antd";
 
 const HomeComponent = () => {
   const { isLoading, userFolders, userFiles } = useSelector(
@@ -16,9 +17,11 @@ const HomeComponent = () => {
   );
 
   return (
-    <div className="col-md-12 w-100">
-      {isLoading ? (
-        <h1 className="display-1 my-5 text-center">Loading...</h1>
+    <div className="w-100">
+    {isLoading ? (
+      <div className="text-center">
+        <Spin size="large" />
+      </div>
       ) : (
         <>
           <ShowItems

@@ -51,7 +51,7 @@ export const createFolder = (data) => (dispatch) => {
       const folderData = await (await folder.get()).data();
       const folderId = folder.id;
       dispatch(addFolder({ data: folderData, docId: folderId }));
-      toast.sucess("Folder created successfully");
+      toast.success("Folder created successfully");
     });
 };
 
@@ -101,7 +101,7 @@ export const createFile = (data, setSuccess) => (dispatch) => {
     .then(async (file) => {
       const fileData = await (await file.get()).data();
       const fileId = file.id;
-      toast.sucess("File created successfully!");
+      toast.success("File created successfully!");
       dispatch(addFile({ data: fileData, docId: fileId }));
       setSuccess(true);
     })
@@ -118,7 +118,7 @@ export const updateFileData = (fileId, data) => (dispatch) => {
     .update({ data })
     .then(() => {
       dispatch(setFileData({ fileId, data }));
-      toast.sucess("File saved successfully!");
+      toast.success("File saved successfully!");
     })
     .catch(() => {
       toast.error("Something went wrong!");
