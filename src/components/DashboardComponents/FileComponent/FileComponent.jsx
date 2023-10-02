@@ -5,6 +5,7 @@ import { Button } from 'antd';
 import Header from "./Header";
 import CodeEditor from "./CodeEditor";
 import DocumentViewer from "../FileComponent/DocumentViewer";
+import PdfViewer from "./PdfViewer";
 
 const FileComponent = () => {
   const { fileId } = useParams();
@@ -62,7 +63,7 @@ const FileComponent = () => {
       );
     } else if (fileExtension.includes("pdf")) {
       // Use a PDF viewer component for PDF files
-      return <div>PDF Viewer Goes Here</div>;
+      return <PdfViewer url={currentFile?.data?.url} />;
     } else if (fileExtension.includes("doc") || fileExtension.includes("docx")) {
       // Use the DocumentViewer component for document files
       return <DocumentViewer url={currentFile?.data?.url} />;
