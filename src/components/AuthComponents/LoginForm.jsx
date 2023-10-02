@@ -17,13 +17,14 @@ const LoginForm = () => {
   const handleSubmit = async (values) => {
     try {
       const { email, password } = values;
-
+  
       if (!email || !password) {
         toast.error("Please fill in all fields");
         return;
       }
-
+  
       await dispatch(signInUser(email, password));
+      toast.success("Successfully login!");
       navigate("/dashboard");
     } catch (error) {
       toast.error("Login failed. Please try again.");

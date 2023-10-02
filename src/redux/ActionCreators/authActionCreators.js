@@ -32,7 +32,7 @@ export const signInUser = (email, password, setSuccess) => (dispatch) => {
       setSuccess(true);
     })
     .catch((error) => {
-      toast.error("Invalid email or password!");
+      
     });
 };
 
