@@ -3,13 +3,13 @@ import "firebase/compat/auth"
 import "firebase/compat/firestore"
 import "firebase/compat/storage";
 const firebaseConfig = {
-    apiKey: "AIzaSyAHHrNk4elVz2iqPgW0HXbaaCV6HhVbN7I",
-    authDomain: "file-management-system-2337d.firebaseapp.com",
-    projectId: "file-management-system-2337d",
-    storageBucket: "file-management-system-2337d.appspot.com",
-    messagingSenderId: "539949416691",
-    appId: "1:539949416691:web:1e4eb1b7519c5f4da6b786"
-  };
+  apiKey: "AIzaSyDoG28X3b6-Yfsd1yPyqlXxDdpMa817ODI",
+  authDomain: "file-management-system-7ce64.firebaseapp.com",
+  projectId: "file-management-system-7ce64",
+  storageBucket: "file-management-system-7ce64.appspot.com",
+  messagingSenderId: "123260201226",
+  appId: "1:123260201226:web:a6dd5ab5e3d32f4f06f2f3"
+};
 
   const fire = firebase.initializeApp(firebaseConfig);
   

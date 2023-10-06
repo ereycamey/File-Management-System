@@ -34,12 +34,14 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
+            <Link to="/login">
               <button
                 className="btn btn-success"
                 onClick={() => dispatch(SignOutUser())}
               >
                 Logout
               </button>
+              </Link>
             </li>
           </>
         ) : (
