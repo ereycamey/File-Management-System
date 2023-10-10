@@ -5,10 +5,10 @@ import RegisterForm from "../../../components/AuthComponents/RegisterForm";
 
 const Register = () => {
   return (
-    <div className="container-fluid">
-      <h1 className="display-1 my-5 text-center"></h1>
-      <div className="row">
-        <div className="col-md-5 mx-auto mt-5">
+    <div >
+     
+      <div >
+        <div>
           <RegisterForm />
          
         </div>
