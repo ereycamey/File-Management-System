@@ -1,11 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import backgroundImage from "../Register/baground.jpg"; // Replace with the actual path
 
 import RegisterForm from "../../../components/AuthComponents/RegisterForm";
 
 const Register = () => {
   return (
-    <div >
+    <div
+      style={{
+        backgroundImage: `url(${backgroundImage})`, // Set the background image here
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh", // Use 100% viewport height for mobile responsiveness
+        width: "100%", // Set the width to 100% for mobile responsiveness
+        margin: "0",
+      }}
+    >
      
       <div >
         <div>

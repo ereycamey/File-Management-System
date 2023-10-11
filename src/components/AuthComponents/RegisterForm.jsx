@@ -5,7 +5,6 @@ import { signUpUser } from "../../redux/ActionCreators/authActionCreators";
 import { toast } from "react-toastify";
 import { Form, Input, Button, Typography, Card, Col } from "antd";
 import { UserOutlined, MailOutlined, LockOutlined } from "@ant-design/icons";
-import backgroundImage from "../AuthComponents/bground.jpg"; // Replace with the actual path
 const { Title } = Typography;
 
 const RegisterForm = () => {
@@ -29,19 +28,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <div
-    style={{
-      backgroundImage: `url(${backgroundImage})`, // Set the background image here
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "750px",
-      width: "1347px", // Set the width here (adjust as needed)
-      margin: "0 auto", // Center the div horizontally
-    }}
-  >
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
      <Card style={{ width: 400, padding: 24, top: 60, borderRadius: 8, boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)" }}>
         <Col style={{ textAlign: "center" }}>
           <Title level={2}>REGISTER</Title>
