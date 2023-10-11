@@ -1,6 +1,6 @@
 import React from "react";
 import backgroundImage from "../Register/baground.jpg"; // Replace with the actual path
-
+import { Row, Col } from "antd";
 import RegisterForm from "../../../components/AuthComponents/RegisterForm";
 
 const Register = () => {
@@ -19,12 +19,12 @@ const Register = () => {
       }}
     >
      
-      <div >
-        <div>
+     <Row justify="center" align="middle" style={{ width: "100%" }}>
+        
+        <Col xs={24} sm={12}>
           <RegisterForm />
-         
-        </div>
-      </div>
+          </Col>
+      </Row>
     </div>
   );
 };
